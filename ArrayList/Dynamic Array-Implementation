@@ -1,0 +1,184 @@
+//ARRAYLIST IMPLEMENTATION FROM SCRATCH
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+public class ArrayList {
+
+	
+	//fields
+	int initialCapacity = 1;
+	int currentSize;
+	Object[] array= {}, temp= {};	
+	int currentIndex = 0;
+	
+	
+	//methods
+	
+        //add(Object)
+        //add(index,object)
+
+        //remove()
+        //remove(index)
+
+        //iterate using traverse()
+        //set(index,object)
+        //get(index)
+        
+
+	public ArrayList() {
+		array = new Object[initialCapacity];
+		currentSize = initialCapacity;
+	}
+	
+	//custom size arraylist creation
+	public ArrayList(int size) {
+		array = new Object[size];
+		currentSize = size;
+	}
+	
+	
+	
+	public void growSize() {
+		temp =new Object[2*currentSize];
+		for(int i=0;i<currentSize;i++) {
+			temp[i] = array[i];
+		}
+		
+		array = temp;
+		currentSize = 2*currentSize;
+				
+	}
+	
+	public void add(Object object) {
+		
+		if(currentSize == currentIndex) growSize();
+	
+		array[currentIndex] = object;
+		currentIndex++;
+	
+	}
+
+	
+	public void add(int index, Object object) {
+		
+		if(currentSize == currentIndex) growSize();
+		
+		
+		for(int i=currentSize-2 ; i>=index; i--) {
+			array[i+1] = array[i]; 
+		}
+		
+		array[index] = object;
+		currentIndex++;
+	}
+
+	
+	
+	//traverse
+	public void traverse() {
+		for(int i=0;i< currentIndex;i++) {
+			System.out.print(array[i] + " ");
+		}
+		System.out.println();
+	}
+	
+	
+	public void remove() {
+		if(currentSize != 0) {
+//			currentSize--;
+			currentIndex--;
+		}
+	}
+	
+	public void remove(int index) {
+		if(currentSize != 0) {
+			for(int i=index; i<currentIndex;i++) {
+				array[i] = array[i+1];
+			}
+//			currentSize--;
+			currentIndex--;
+		}
+	}
+	
+	
+	public void get(int index) {
+		if(index < currentSize) System.out.println(array[index]);
+		else System.out.println("Error: index provides is greater than array Size");
+	}
+	
+	public void set(int index, Object object) {
+		if(index < currentSize) array[index] = object;
+	}
+	
+	
+}
+
+
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+public class Main {
+
+	public static void main(String[] args) {
+
+		ArrayList arrList = new ArrayList();
+		
+		//TEST1
+//		arrList.add(1);
+//		arrList.add(2);
+//		arrList.add(3);
+//		arrList.add(1, 4);
+//		arrList.add(2,5);		
+//		arrList.traverse();
+//
+//		arrList.remove();
+//		arrList.traverse();
+//		arrList.add(3,9);
+//		arrList.traverse();
+//		
+//		
+//		arrList.remove(0);
+//		arrList.traverse();
+//
+//		arrList.get(0);
+//		arrList.set(0,10);
+//		
+//		arrList.traverse();
+
+		
+//	TEST2	
+		arrList.add(1);
+		arrList.add(2);
+		arrList.add(3);
+		arrList.add(4);
+		arrList.add(5);
+		arrList.add(6);
+		arrList.add(7);
+		arrList.add(8);
+		arrList.add(9);
+		
+		arrList.traverse();	
+		System.out.println(arrList.currentSize);
+		System.out.println(arrList.currentIndex);
+		
+		arrList.add(1,22);
+		arrList.traverse();	
+		System.out.println(arrList.currentSize);
+		System.out.println(arrList.currentIndex);
+		
+		arrList.remove();
+		arrList.traverse();	
+		System.out.println(arrList.currentSize);
+		System.out.println(arrList.currentIndex);
+		
+		arrList.remove(1);
+		arrList.traverse();	
+		System.out.println(arrList.currentSize);
+		System.out.println(arrList.currentIndex);
+		
+
+	}
+
+}
+
